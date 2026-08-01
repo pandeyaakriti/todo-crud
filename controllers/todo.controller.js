@@ -10,5 +10,13 @@ const getAllTodos = async (req, res) => {
     console.log ('getalltodos called from controller');
 
 };
+const createTodo = async (req, res) => {    
+    try {
+        const newTodo = await todoService.createTodo(req.body);
+        res.status(201).json(newTodo);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+};
 
-module.exports = { getAllTodos };
+module.exports = { getAllTodos, createTodo };

@@ -6,5 +6,11 @@ const getAllTodos = async () => {
     const result = await todoRepository.getAllTodos();
     return result;
 };
+const createTodo = async (todoData) => {     
+    if (!todoData.title || todoData.title.trim() === '') {
+        throw new Error('Title is required');
+    }
+    return await todoRepository.createTodo(todoData);
+};
 
-module.exports = { getAllTodos };
+module.exports = { getAllTodos, createTodo };
