@@ -8,4 +8,11 @@ const createTodo = async (todoData) => {
     const todo = new Todo(todoData);
     return await todo.save();
 };
-module.exports = {getAllTodos, createTodo};
+const updateTodo = async (id, updates) => {
+    return await Todo.findByIdAndUpdate(id, updates, { new: true });
+};
+
+const deleteTodo = async (id) => {             
+    return await Todo.findByIdAndDelete(id);
+};
+module.exports = {getAllTodos, createTodo, updateTodo, deleteTodo};

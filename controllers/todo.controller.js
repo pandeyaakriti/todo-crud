@@ -18,5 +18,22 @@ const createTodo = async (req, res) => {
         res.status(400).json({ message: err.message });
     }
 };
+const updateTodo = async (req, res) => {        
+    try {
+        const updated = await todoService.updateTodo(req.params.id, req.body);
+        res.json(updated);
+    } catch (err) {
+        res.status(404).json({ message: err.message });
+    }
+};
 
-module.exports = { getAllTodos, createTodo };
+const deleteTodo = async (req, res) => {    
+    try {
+        const deleted = await todoService.deleteTodo(req.params.id);
+        res.json({ message: 'Todo deleted', deleted });
+    } catch (err) {
+        res.status(404).json({ message: err.message });
+    }
+};
+
+module.exports = { getAllTodos, createTodo, updateTodo, deleteTodo};
