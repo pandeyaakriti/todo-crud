@@ -2,8 +2,10 @@
 const express=require('express');
 const app=express();
 require('./config/db');
+const cors = require('cors'); 
 const todoRoutes=require('./routes/todo.route');
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/',(req,res)=>{
